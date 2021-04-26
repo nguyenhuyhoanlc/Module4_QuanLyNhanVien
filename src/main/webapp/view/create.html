@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<h3>Add Product</h3>
+<p>
+    <a th:href="@{/}">
+        Back to staff list
+    </a>
+</p>
+<div id="form">
+    <form th:action="@{/save}" th:object="${staffForm}"
+          method="post" novalidate="novalidate" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}"/>
+        <div>
+            <label>Name</label>
+            <input type="text" th:field="*{name}"/>
+        </div>
+        <div>
+            <label>Date</label>
+            <input type="text" th:field="*{date}"/>
+        </div>
+        <div>
+            <label>Avatar</label>
+            <input type="file" th:field="*{avatar}"/>
+        </div>
+        <div>
+            <label>Gender</label>
+            <select th:field="*{gender}">
+                <option value="true">Nam</option>
+                <option value="false">Nữ</option>
+            </select>
+        </div>
+        <input type="submit" value="Save"/>
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
