@@ -93,11 +93,9 @@ public class StaffServiceImpl implements IStaffService{
 
     @Override
     public void remove(long id) {
-        for (int i = 0; i < staffList.size(); i++) {
-            if (staffList.get(i).getId() == id) {
-                staffList.remove(i);
-                break;
-            }
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        entityManager.remove(findById(id));
+        transaction.commit();
         }
     }
-}

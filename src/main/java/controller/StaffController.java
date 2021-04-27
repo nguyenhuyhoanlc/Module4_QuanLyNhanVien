@@ -10,6 +10,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import service.IStaffService;
 import service.StaffServiceImpl;
 
@@ -83,6 +84,21 @@ public class StaffController {
                 staffForm.getDate(),fileName,staffForm.isGender());
         staffService.update(staff1);
 
+        return "redirect:/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") long id, Model model) {
+        model.addAttribute("ab", staffService.findById(id));
+        System.out.println(staffService.findById(id).getName());
+        return "/detele";
+    }
+
+    @PostMapping("/delete1")
+    public String deteleStaff(@ModelAttribute("ab") Staff staff){
+        System.out.println(staff.getName());
+
+        staffService.remove(staff.getId());
         return "redirect:/";
     }
 }

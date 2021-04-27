@@ -16,6 +16,7 @@
         <th>Avatar</th>
         <th>Gender</th>
         <th>Edit</th>
+        <th>Delete</th>
     </tr>
 
     <tr th:each="staff : ${staff}">
@@ -24,6 +25,7 @@
         <td><img width="100" height="100" th:src="@{'/image/' + ${staff.avatar}}" alt=""></td>
         <td th:text="${staff.gender}"></td>
         <td><a th:href="@{/edit/{id}(id=${staff.getId()})}">Edit</a> </td>
+        <td><a th:href="@{/delete/{id}(id=${staff.getId()})}">delete</a></td>
     </tr>
 </table>
 <footer th:replace="/layout :: footer"></footer>
